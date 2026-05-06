@@ -1,0 +1,45 @@
+int s1 = A5;
+int s2 = 0;
+
+int b1 = 6;
+int b2 = 7;
+int b3 = 8;
+int b4 = 9;
+
+void setup()
+{
+  pinMode(b1, OUTPUT);
+  pinMode(b2, OUTPUT);
+  pinMode(b3, OUTPUT);
+  pinMode(b4, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  s2 = analogRead(s1);
+
+  if (s2 > 0 && s2 < 250) {
+    digitalWrite(b1, HIGH);
+    Serial.print("safe zone");
+  }
+  else if (s2 > 251 && s2 < 400) {
+    digitalWrite(b2, HIGH);
+    Serial.print("detected zone");
+  }
+  else if (s2 >= 401 && s2 < 500) {
+    digitalWrite(b3, HIGH);
+    Serial.print("Alert zone");
+  }
+  else if (s2 >= 501 && s2 < 800) {
+    digitalWrite(b4, HIGH);
+    Serial.print("danger zone");
+  }
+
+  // else {
+  //   digitalWrite(b1, LOW);
+  //   digitalWrite(b2, LOW);
+  //   digitalWrite(b3, LOW);
+  //   digitalWrite(b4, LOW);
+  // }
+}
